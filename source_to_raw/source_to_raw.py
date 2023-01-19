@@ -4,12 +4,26 @@ from pprint import pprint
 import requests
 
 
-# Global variables for paths
-cur_dir_path = os.path.dirname(os.path.realpath('__file__'))
-parent_dir   = os.path.abspath(os.path.join(cur_dir_path, os.pardir))
-
-
 # Define functions
+def get_parent_dir():
+    """
+    Returns the parent dictionary of the Python file
+
+    Returns
+    -------
+    parent_dir : str
+        Path to the parent directory of the file.
+
+    """
+    cur_dir_path = os.path.dirname(os.path.realpath('__file__'))
+    parent_dir   = os.path.abspath(os.path.join(cur_dir_path, os.pardir))
+
+    return parent_dir
+
+
+
+
+
 def request_to_dict(lon, lat):
     """
     Requests API from SMHI and returns a Python dict 
@@ -37,6 +51,9 @@ def request_to_dict(lon, lat):
     return r.text#json()
 
 
+
+
+
 def dict_to_json_file(data_dict, filepath):
     """
     Saves a Python dict as a JSON-file at a specific file path
@@ -57,7 +74,11 @@ def dict_to_json_file(data_dict, filepath):
     	outfile.writelines(str(data_dict))
 
 
+
+
+
 # Calling the functions
 if __name__ == '__main__':
-	data = request_to_dict(16, 58)
-	dict_to_json_file(data, parent_dir + "/data/testing/raw/data.json")
+    parent_dir = get_parent_dir()
+    data = request_to_dict(16, 58)
+    dict_to_json_file(data, parent_dir + "/data/testing/raw/data.json")
