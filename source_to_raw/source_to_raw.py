@@ -1,6 +1,6 @@
 # Import modules
 import os
-from pprint import pprint
+# from pprint import pprint
 import requests
 
 
@@ -76,9 +76,14 @@ def dict_to_json_file(data_dict, filepath):
 
 
 
-
-# Calling the functions
-if __name__ == '__main__':
+def main():
     parent_dir = get_parent_dir()
     data = request_to_dict(16, 58)
     dict_to_json_file(data, parent_dir + "/data/testing/raw/data.json")
+
+
+
+
+# Calling the functions
+if __name__ == '__main__':
+    main()

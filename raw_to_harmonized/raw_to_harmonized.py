@@ -120,12 +120,15 @@ def save_harmonized_df(dataframe, parent_dir):
 
 
 
-
-
-# Calling the functions
-if __name__ == '__main__':
+def main():
     parent_dir = get_parent_dir()
     raw_data_file = parent_dir + '/data/testing/raw/data.json'
     df = read_json_to_df (raw_data_file)
     dataframe = harmonize_data(df)
     save_harmonized_df(dataframe, parent_dir)
+
+
+
+# Calling the functions
+if __name__ == '__main__':
+    main()
