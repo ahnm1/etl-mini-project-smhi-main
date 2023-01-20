@@ -15,11 +15,11 @@ CREATE DATABASE mini_etl_project
 COMMENT ON DATABASE mini_etl_project
     IS 'mini etl project';
 	
-CREATE TABLE Weather_data
+CREATE TABLE weather_data
 (id SERIAL UNIQUE PRIMARY KEY,
-Date DATE,
-Time INT,
-Temperature NUMERIC (10),
-Air_Pressure NUMERIC (10),
-Precipitation NUMERIC (10)
+date DATE,
+time INT,
+temperature NUMERIC (10),
+air_pressure NUMERIC (10),
+precipitation NUMERIC (10)
 );

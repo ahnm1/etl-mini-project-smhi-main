@@ -1,8 +1,6 @@
 import os
 import psycopg2
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 import plotly.express as px
 
 conn = psycopg2.connect(
@@ -10,7 +8,7 @@ conn = psycopg2.connect(
     port="5432",
     database="mini_etl_project",
     user="postgres",
-    password="tAggA67!")#byt lösenord
+    password="rweq-4231")
 
 def postgresql_to_dataframe(conn, select_query, column_names):
     cursor = conn.cursor()

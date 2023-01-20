@@ -5,12 +5,16 @@ import requests
 
 class SourceToRaw:
     def __init__(self):
-        raw_file = os.getcwd() + '/data/testing/raw/data.json'
+        print('SOURCE TO RAW: ', os.getcwd())
+        raw_file = os.getcwd() + '\\wsl.localhost\\Ubuntu\\home\\alex\\airflow\\dags\\etl_mini_project_smhi_main\\data\\testing\\raw' #//etl_mini_project_smhi_main//data//testing//raw//data.json'
+        print('SOURCE TO RAW: ', raw_file)
         # print(self.get_parent_dir())
         # parent_dir = self.get_parent_dir()
         
         data = self.request_to_dict(16, 58)
-        self.dict_to_json_file(data, raw_file) # parent_dir + "/data/testing/raw/data.json")
+        print('Request of data successful')
+        self.dict_to_json_file(data, 'data_raw.json')#raw_file) # parent_dir + "/data/testing/raw/data.json")
+        print('Data saved successfully')
 
 
     # Define functions

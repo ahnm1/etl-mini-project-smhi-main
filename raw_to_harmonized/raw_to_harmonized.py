@@ -4,12 +4,15 @@ import pandas as pd
 
 class RawToHarmonized:
     def __init__(self):
-        raw_file = os.getcwd() + '/data/testing/raw/data.json'
+        print('RAW TO HARMONIZED: ', os.getcwd())
+
+        raw_file = os.getcwd() + '/etl_mini_project_smhi_main/data/testing/raw/data.json'
+        print('RAW TO HARMONIZED: ', raw_file)
         parent_dir    = self.get_parent_dir()
         raw_data_file = raw_file #parent_dir + '/data/testing/raw/data.json'
-        df            = self.read_json_to_df (raw_data_file)
+        df            = self.read_json_to_df ('data_raw.json') #raw_data_file)
         dataframe     = self.harmonize_data(df)
-        self.save_harmonized_df(dataframe, os.getcwd() + '/data/testing/cleansed/data.json')
+        self.save_harmonized_df(dataframe, 'data_harmonized.json')#os.getcwd() + '/etl_mini_project_smhi_main/data/testing/cleansed/data.json')
         pass
 
     # Definition of functions

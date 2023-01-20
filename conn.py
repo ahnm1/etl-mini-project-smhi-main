@@ -18,8 +18,10 @@ def cur_dir():
 
     """
     cur_dir_path = os.path.dirname(os.path.realpath('__file__'))
-
-    return cur_dir_path
+    parent_dir   = os.path.abspath(os.path.join(cur_dir_path, os.pardir))
+    parent_parent_dir   = os.path.abspath(os.path.join(parent_dir, os.pardir))
+    print(parent_parent_dir)
+    return parent_parent_dir
 
 
 
@@ -68,6 +70,7 @@ def create_conn():
         database="mini_etl_project",
         user="postgres",
         password="rweq-4231")
+    print('CONNECT')
     return conn
 
 
@@ -94,6 +97,9 @@ def data_to_list(dataframe):
     
     return list_of_data
 
+
+
+
 def add_new_line(data_tuple, conn):
     """
     Add new line to the PostgreSQL database
@@ -110,10 +116,15 @@ def add_new_line(data_tuple, conn):
     None.
 
     """
+    print('ADD LINE: START')
     cur = conn.cursor()
     cur.execute(f"INSERT INTO weather_data (date, time, temperature, air_pressure, precipitation) VALUES {data_tuple};") #, data_tuple[1], data_tuple[2], data_tuple[3] ,data_tuple[4]
     cur.execute("COMMIT;")
     cur.close()
+    print('ADD LINE: END')
+
+
+
 
 
 def add_data_to_db(dataframe, conn):
@@ -133,21 +144,22 @@ def add_data_to_db(dataframe, conn):
 
     """
     data_tuple = data_to_list(dataframe)
-
+    print('ADD DB: START')
     for i in range(0, 24):
         add_new_line(data_tuple[i], conn)
+    print('ADD DB: END')
 
 
 def main():
     cur_dir_path = cur_dir()
-    clean_data_path = cur_dir_path + '/data/testing/cleansed/data.json'
+    clean_data_path = cur_dir_path + '/data_harmonized.json' #'/data/testing/cleansed/data.json'
     conn = create_conn()
     dataframe = read_json_to_df(clean_data_path)
     add_data_to_db(dataframe, conn)
 
 
 
-
+main()
 # Calling the main functions
 if __name__ == '__main__':
     main()
