@@ -1,39 +1,16 @@
 # Import modules
-import os
 import pandas as pd
 
+
+# Class
 class RawToHarmonized:
     def __init__(self):
-        print('RAW TO HARMONIZED: ', os.getcwd())
-
-        raw_file = os.getcwd() + '/etl_mini_project_smhi_main/data/testing/raw/data.json'
-        print('RAW TO HARMONIZED: ', raw_file)
-        parent_dir    = self.get_parent_dir()
-        raw_data_file = raw_file #parent_dir + '/data/testing/raw/data.json'
-        df            = self.read_json_to_df ('data_raw.json') #raw_data_file)
+        df            = self.read_json_to_df ('data_raw.json')
         dataframe     = self.harmonize_data(df)
-        self.save_harmonized_df(dataframe, 'data_harmonized.json')#os.getcwd() + '/etl_mini_project_smhi_main/data/testing/cleansed/data.json')
-        pass
-
-    # Definition of functions
-    def get_parent_dir(self):
-        """
-        Returns the parent dictionary of the Python file
-
-        Returns
-        -------
-        parent_dir : str
-            Path to the parent directory of the file.
-
-        """
-        cur_dir_path = os.path.dirname(os.path.realpath('__file__'))
-        parent_dir   = os.path.abspath(os.path.join(cur_dir_path, os.pardir))
-
-        return parent_dir
+        self.save_harmonized_df(dataframe, 'data_harmonized.json')
 
 
 
- 
 
     def read_json_to_df (self, raw_data_file):
         """
@@ -129,19 +106,3 @@ class RawToHarmonized:
 
         """
         dataframe.to_json(target_dir, orient = 'records')
-
-
-
-def main():
-    # parent_dir = get_parent_dir()
-    # raw_data_file = parent_dir + '/data/testing/raw/data.json'
-    # df = read_json_to_df (raw_data_file)
-    # dataframe = harmonize_data(df)
-    # save_harmonized_df(dataframe, parent_dir)
-    pass
-
-
-
-# Calling the functions
-if __name__ == '__main__':
-    main()

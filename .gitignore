@@ -127,3 +127,20 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Airflow
+airflow-webserver.pid
+airflow.cfg
+airflow.db
+standalone_admin_password.txt
+start.sh
+webserver_config.py
+
+# Other Local
+/logs
+/plugins
+conn_copy.py
+dags/etl_mini_project_smhi_main/data/testing/
+data_harmonized.json
+data_raw.json
+Temperature_plot_date.jpg
