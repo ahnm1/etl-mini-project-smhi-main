@@ -144,3 +144,4 @@ dags/etl_mini_project_smhi_main/data/testing/
 data_harmonized.json
 data_raw.json
 Temperature_plot_date.jpg
+.gitignore
